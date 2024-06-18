@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Flights</title>
+</head>
+<body>
+    <h1>View Flights</h1>
+    <table border="1">
+        <tr>
+            <th>Flight ID</th>
+            <th>Airline Name</th>
+            <th>Departure Time</th>
+            <th>Capacity</th>
+            <th>Actions</th>
+        </tr>
+        {% for flight in flights %}
+        <tr>
+            <td>{{ flight[0] }}</td>
+            <td>{{ flight[1] }}</td>
+            <td>{{ flight[2] }}</td>
+            <td>{{ flight[3] }}</td>
+            <td>
+                <a href="{{ url_for('update_flight', flight_id=flight[0]) }}">Update</a>
+                <a href="{{ url_for('delete_flight', flight_id=flight[0]) }}">Delete</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="{{ url_for('add_flight') }}">Add New Flight</a><br>
+    <a href ="/admin_dash">Home</a>
+</body>
+</html>

@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>View Flights</title>
+</head>
+<body>
+    <h1>Available Flights</h1>
+    {% if messages %}
+        <ul>
+            {% for message in messages %}
+                <li style="color: red;">{{ message }}</li>
+            {% endfor %}
+        </ul>
+    {% endif %}
+    <table border="1">
+        <tr>
+            <th>Flight ID</th>
+            <th>Airline Name</th>
+            <th>Departure Time</th>
+            <th>Capacity</th>
+            <th>Action</th>
+        </tr>
+        {% for flight in flights %}
+        <tr>
+            <td>{{ flight[0] }}</td>
+            <td>{{ flight[1] }}</td>
+            <td>{{ flight[2] }}</td>
+            <td>{{ flight[3] }}</td>
+            <td>
+                <a href="{{ url_for('make_reservation', flight_id=flight[0]) }}">Make Reservation</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/userdash">Back to Home</a>
+</body>
+</html>
+

@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Your Reservations</title>
+</head>
+<body>
+    <h1>Your Reservations</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: red;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <table border="1">
+        <tr>
+            <th>Reservation ID</th>
+            <th>Airline Name</th>
+            <th>Departure Time</th>
+            <th>Action</th>
+        </tr>
+        {% for reservation in user_reservations %}
+        <tr>
+            <td>{{ reservation[0] }}</td>
+            <td>{{ reservation[1] }}</td>
+            <td>{{ reservation[2] }}</td>
+            <td>
+                <a href="{{ url_for('cancel_reservation', reservation_id=reservation[0]) }}">Cancel Reservation</a>
+            </td>
+        </tr>
+        {% endfor %}
+    </table>
+    <br>
+    <a href="/userdash">Back to Home</a>
+</body>
+</html>

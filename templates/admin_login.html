@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Login</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0; 
+            color: #333333; 
+            margin: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            height: 100vh;
+        }
+
+        h1 {
+            color: #0066cc;
+        }
+
+        form {
+            background-color: #ffffff; 
+            padding: 20px;
+            border-radius: 5px; 
+            box-shadow: 0 0 10px rgba(0, 0, 0, 0.1); 
+        }
+
+        label {
+            display: block;
+            margin: 10px 0;
+        }
+
+        input {
+            width: 100%;
+            padding: 10px;
+            margin-bottom: 10px;
+            box-sizing: border-box;
+        }
+
+        input[type="submit"] {
+            background-color: #0066cc; 
+            color: #ffffff; 
+            cursor: pointer;
+        }
+
+        input[type="submit"]:hover {
+            background-color: #004080; 
+        }
+
+        p {
+            margin-top: 20px;
+        }
+
+        a {
+            color: #0066cc; 
+            text-decoration: none;
+        }
+
+        a:hover {
+            text-decoration: underline; 
+        }
+    </style>
+</head>
+<body>
+    <h1>Admin Login</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: red;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form method="post" action="/admin/login">
+        <label for="admin_username">Username:</label>
+        <input type="text" name="admin_username" required>
+        <br>
+        <label for="admin_password">Password:</label>
+        <input type="password" name="admin_password" required>
+        <br>
+        <input type="submit" value="Login">
+    </form>
+    <p>Don't have an admin account? <a href="/admin/register">Register here</a></p>
+</body>
+</html>

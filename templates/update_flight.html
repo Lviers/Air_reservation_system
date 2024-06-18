@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Update Flight</title>
+</head>
+<body>
+    <h1>Update Flight</h1>
+    {% with messages = get_flashed_messages() %}
+        {% if messages %}
+            <ul>
+                {% for message in messages %}
+                    <li style="color: red;">{{ message }}</li>
+                {% endfor %}
+            </ul>
+        {% endif %}
+    {% endwith %}
+    <form method="post" action="/update_flight/{{ flight[0] }}">
+        <label for="airline_name">Airline Name:</label>
+        <input type="text" name="airline_name" value="{{ flight[1] }}" required>
+        <br>
+        <label for="departure_time">Departure Time:</label>
+        <input type="text" name="departure_time" value="{{ flight[2] }}" required>
+        <br>
+        <label for="capacity">Capacity:</label>
+        <input type="number" name="capacity" value="{{ flight[3] }}" required>
+        <input type="submit" value="Update Flight">
+        <br>
+    </form>
+    <br>
+
+</body>
+</html>
